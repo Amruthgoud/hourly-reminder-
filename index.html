@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hourly Reminder Website</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f3f4f6;
+    }
+    .container {
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hourly Reminder Timer</h1>
+    <p id="status">Click the button to start the reminder.</p>
+    <button id="startBtn">Start Timer</button>
+    <button id="stopBtn" style="display:none;">Stop Timer</button>
+  </div>
+
+  <script>
+    let timerId;
+
+    function startReminder() {
+      document.getElementById('status').textContent = "Timer started! You will be reminded every hour.";
+      document.getElementById('startBtn').style.display = "none";
+      document.getElementById('stopBtn').style.display = "inline-block";
+      
+      // Set up the timer to trigger every hour
+      timerId = setInterval(() => {
+        alert("Time for a 2-minute break! Stretch, hydrate, and relax.");
+      }, 3600000); // 3600000 ms = 1 hour
+    }
+
+    function stopReminder() {
+      clearInterval(timerId);
+      document.getElementById('status').textContent = "Timer stopped. Click start to begin again.";
+      document.getElementById('startBtn').style.display = "inline-block";
+      document.getElementById('stopBtn').style.display = "none";
+    }
+
+    document.getElementById('startBtn').addEventListener('click', startReminder);
+    document.getElementById('stopBtn').addEventListener('click', stopReminder);
+  </script>
+</body>
+</html>
